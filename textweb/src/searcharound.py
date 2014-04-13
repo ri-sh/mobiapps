@@ -149,13 +149,13 @@ class LocalSearch(webapp.RequestHandler):
     def get(self):
         message = cgi.escape(self.request.get('txtweb-message')) #get hold of txtweb-message here
         if message == "": #If message is empty, reply with a welcome message
-            self.response.out.write("""<html><head><meta name="txtweb-appkey" content="3b58eea1-0988-4976-a200-02b12ecc8bfd" /></head><body><p>To use this app : reply to txtWeb using @locsearch[space][what you want to search for with city preferably]<br> Eg: @dirsearch cafe near jayanagar bangalore</p></body></html>""")
+            self.response.out.write("""<html><head><meta name='txtweb-appkey' content='3b58eea1-0988-4976-a200-02b12ecc8bfd' /></head><body><p>To use this app : reply to txtWeb using @locsearch[space][what you want to search for with city preferably]<br> Eg: @dirsearch cafe near jayanagar bangalore</p></body></html>""")
         else:
             res = localsearch(message)
             if res == "":
-                self.response.out.write("""<html><head><meta name="3b58eea1-0988-4976-a200-02b12ecc8bfd" /></head><body>Sorry no listings found. Please try again with closeby landmarks and append the city name.<br/></body></html>""")
+                self.response.out.write("""<html><head><meta name='txtweb-appkey' content='3b58eea1-0988-4976-a200-02b12ecc8bfd' /></head><body>Sorry no listings found. Please try again with closeby landmarks and append the city name.<br/></body></html>""")
             else:
-                self.response.out.write("""<html><head><meta name="txtweb-appkey" content="3b58eea1-0988-4976-a200-02b12ecc8bfd" /></head><body>"""+res+"""<br/></body></html>""")
+                self.response.out.write("""<html><head><meta name='txtweb-appkey' content='3b58eea1-0988-4976-a200-02b12ecc8bfd' /></head><body>"""+res+"""<br/></body></html>""")
 application = webapp.WSGIApplication(
                                      [('/', MainPage),
                                       ('/LocalSearch',LocalSearch)],
